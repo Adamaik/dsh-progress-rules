@@ -1,0 +1,22 @@
+# dsh-progress-rules — bundle patch.
+#
+# A bundle patch is composed at boot from this package (not from the profile's
+# cordis.patch.yml), so dsh-config-manager rewriting the profile patch does not
+# remove this row. Uninstall = remove the dependency + the bundles entry from
+# the profile package.json (or `dsh plugin remove`).
+#
+# The row mounts the plugin module in this same package; the prompt text lives
+# in its `config.text`, so editing prose never touches the plugin code.
+- insert:
+    - id: progress-rules
+      name: dsh-progress-rules
+      config:
+        # 连续多少个「只有工具调用、没有正文」的步骤后注入一次提醒。
+        # 1 = 每步都提醒；设为 5 = 沉默攒够 5 步才提醒一次（中间有正文就清零）。
+        everySteps: 5
+        text: |
+          ## 过程纪律（优先于其他风格偏好）
+
+          1. 长程任务必须逐步通报。每完成一个明确步骤、或结束一轮探索后，在发起下一次工具调用前，先用 1–3 句正文说明：刚做了什么、得到什么结论、下一步做什么。不要把多个步骤攒到最后一次性汇报，也不要用工具调用代替通报；单个小步骤或纯读取可以合并进同一段通报。
+
+          2. 不确定就问，不要猜。出现以下情况必须先调用 ask_user_question 再动手：(a) 需求有歧义，存在多种合理实现方向；(b) 需要用户偏好或业务背景才能决定；(c) 仓库与文档里查不到、且猜错代价高的关键事实。只读探索可以自主进行，用来把问题问得更准；但不得用"先猜一个再改"来替代提问。一次问清，给出可选项并附推荐。

@@ -1,0 +1,49 @@
+{
+  "name": "dsh-progress-rules",
+  "version": "0.2.1",
+  "description": "DeepSeek Harness bundle plugin: a process-discipline system-prompt section plus a deterministic nudge that makes agents narrate progress between silent tool steps.",
+  "type": "module",
+  "main": "index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.mjs",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "dsh-plugin",
+    "cordis",
+    "plugin",
+    "system-prompt",
+    "progress",
+    "agent"
+  ],
+  "license": "MIT",
+  "author": "Adamaik",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adamaik/dsh-progress-rules.git"
+  },
+  "homepage": "https://github.com/Adamaik/dsh-progress-rules#readme",
+  "bugs": {
+    "url": "https://github.com/Adamaik/dsh-progress-rules/issues"
+  },
+  "engines": {
+    "dsh": ">=0.0.1"
+  },
+  "scripts": {
+    "test": "node --test test.mjs"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
